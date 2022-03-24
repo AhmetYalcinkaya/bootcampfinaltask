@@ -1,5 +1,6 @@
 import React from "react";
 import "./cart.css";
+import { Link } from "react-router-dom";
 
 const Orders = () => {
   return (
@@ -7,7 +8,9 @@ const Orders = () => {
       <div className="cartwrapper">
         <h1 className="carttitle">YOUR BAG</h1>
         <div className="top">
-          <button className="topbutton">CONTINUE SHOPPING</button>
+          <Link to="/">
+            <button className="topbutton">CONTINUE SHOPPING</button>
+          </Link>
           <div className="toptexts">
             <span className="toptext">Shopping Bag(2)</span>
             <button className="clear"> Clear All</button>
@@ -46,31 +49,6 @@ const Orders = () => {
                 </button>
               </div>
             </div>
-            <hr className="hr" />
-            <div className="pro">
-              <div className="producttail">
-                <img
-                  className="bottomimg"
-                  src="https://i.pinimg.com/originals/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png"
-                  alt=""
-                />
-                <div className="details">
-                  <span className="proname">
-                    <b>Product:</b> HAKURA T-SHIRT
-                  </span>
-                  <span className="proid">
-                    <b>ID:</b> 93813718293
-                  </span>
-
-                  <span className="prosize">
-                    <b>Size:</b> M
-                  </span>
-                </div>
-                <div className="price">
-                  <div className="proprice">$ 20</div>
-                </div>
-              </div>
-            </div>
           </div>
           <div className="summary">
             <h1 className="summarytitle">ORDER SUMMARY</h1>
@@ -79,7 +57,7 @@ const Orders = () => {
               <span className="summarytext">Total Discount</span>
               <span className="summaryprice">$ 60</span>
             </div>
-            <div className="summarybutton">ORDER NOW</div>
+            <button className="summarybutton">ORDER NOW</button>
           </div>
         </div>
       </div>
