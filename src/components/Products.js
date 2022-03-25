@@ -6,7 +6,7 @@ import { addProduct } from "../redux/CartSlice";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const [quantity, setQuantity] = useState(1);
+  const [quanty, setQuanty] = useState(1);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Products = () => {
   };
 
   const handleClick = () => {
-    dispatch(addProduct({ product: products, quantity }));
+    dispatch(addProduct({ ...products, quantity: quanty }));
   };
 
   return (
@@ -40,7 +40,15 @@ const Products = () => {
                 <button className="addbutton">Go to Detail</button>
               </Link>
 
-              <div className="amount"></div>
+              <div className="amount">
+                <input
+                  onChange={(e) => {
+                    setQuanty(e.target.value);
+                  }}
+                  type="number"
+                  className="input"
+                />
+              </div>
               <button onClick={handleClick} className="addbutton">
                 ADD TO CART
               </button>
