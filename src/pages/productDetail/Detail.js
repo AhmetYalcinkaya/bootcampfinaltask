@@ -2,10 +2,15 @@ import { useEffect, useState } from "react";
 import "./singleproduct.css";
 import { useParams } from "react-router-dom";
 import { baseService } from "../../network/services/baseService";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../redux/CartSlice";
 
 const Detail = () => {
   const [detail, setDetail] = useState({});
+  const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getDetail();
@@ -18,6 +23,10 @@ const Detail = () => {
     } catch (error) {
       console.log("Get detail error", error);
     }
+  };
+
+  const handleClick = () => {
+    dispatch(addProduct({ ...detail, quantity }));
   };
 
   return (
@@ -46,9 +55,18 @@ const Detail = () => {
             </div>
             <div className="addcontainer">
               <div className="amount">
-                <input type="number" className="input" />
+                <input
+                  type="number"
+                  className="input"
+                  value={quantity}
+                  onChange={(e) => {
+                    setQuantity(e.target.value);
+                  }}
+                />
               </div>
-              <button className="addbutton">ADD TO CART</button>
+              <button onClick={handleClick} className="addbutton">
+                ADD TO CART
+              </button>
             </div>
           </div>
         </div>

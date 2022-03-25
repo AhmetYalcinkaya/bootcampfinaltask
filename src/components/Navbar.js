@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Badge from "@mui/material/Badge";
+import { useSelector } from "react-redux";
 
-function Navbar(props) {
+function Navbar() {
+  const quantity = useSelector((state) => state.cart.quantity);
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light shadow">
@@ -37,7 +41,9 @@ function Navbar(props) {
               to="/orders"
               className="btn btn-outline-primary ms-2 px-4 rounded-pill "
             >
-              <i className="bi bi-cart3"></i>
+              <Badge badgeContent={quantity} color="primary">
+                <i className="bi bi-cart3"></i>
+              </Badge>
             </Link>
           </>
         </div>

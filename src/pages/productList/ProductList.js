@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { baseService } from "../../network/services/baseService";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../redux/CartSlice";
 
 const ProductList = () => {
   const [productsList, setProductsList] = useState([]);
   const { title } = useParams();
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getCategoriesProducts();
@@ -18,6 +22,11 @@ const ProductList = () => {
       console.log("Get productsList error", error);
     }
   };
+
+  const handleClick = (id) => {
+    dispatch(addProduct({ product: productsList, quantity }));
+  };
+
   return (
     <>
       <div className="products">
@@ -26,16 +35,18 @@ const ProductList = () => {
             <img src={product.image} className="card-img-top" alt="..." />
             <div className="card-body">
               <h5 className="card-title">{product.title}</h5>
-              <p className="card-text">{product.description}</p>
+              <p className="card-text">
+                {product.description.substring(0, 150)}...
+              </p>
               <div className="addcontainer">
                 <Link to={`/products/${product.id}`}>
                   <button className="addbutton">Go to Detail</button>
                 </Link>
 
-                <div className="amount">
-                  <input type="number" className="input" />
-                </div>
-                <button className="addbutton">ADD TO CART</button>
+                <div className="amount"></div>
+                <button onClick={handleClick} className="addbutton">
+                  ADD TO CART
+                </button>
               </div>
             </div>
           </div>

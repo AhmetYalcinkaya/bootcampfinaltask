@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { baseService } from "../network/services/baseService";
+import { addProduct } from "../redux/CartSlice";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getCategories();
   }, []);
-
   const getCategories = async () => {
     try {
       const data = await baseService.get("/products?limit=10");
@@ -16,6 +19,10 @@ const Products = () => {
     } catch (error) {
       console.log("Get products error", error);
     }
+  };
+
+  const handleClick = () => {
+    dispatch(addProduct({ product: products, quantity }));
   };
 
   return (
@@ -33,10 +40,10 @@ const Products = () => {
                 <button className="addbutton">Go to Detail</button>
               </Link>
 
-              <div className="amount">
-                <input type="number" className="input" />
-              </div>
-              <button className="addbutton">ADD TO CART</button>
+              <div className="amount"></div>
+              <button onClick={handleClick} className="addbutton">
+                ADD TO CART
+              </button>
             </div>
           </div>
         </div>
