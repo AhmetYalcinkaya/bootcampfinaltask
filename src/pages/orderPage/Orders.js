@@ -8,9 +8,6 @@ const Orders = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
-  const removeItem = (id) => {
-    dispatch(deleteProduct(id));
-  };
   const clearall = () => {
     dispatch(deleteAllProduct());
   };
@@ -32,8 +29,8 @@ const Orders = () => {
         </div>
         <div className="bottom">
           <div className="bottominfo">
-            {cart.products.map((product) => (
-              <div className="pro">
+            {cart.products.map((product, key) => (
+              <div className="pro" key={key}>
                 <div className="producttail">
                   <img className="bottomimg" src={product.image} alt="" />
                   <div className="details">
@@ -59,7 +56,7 @@ const Orders = () => {
                     </div>
                   </div>
                   <button
-                    onClick={() => removeItem(product.id)}
+                    onClick={() => dispatch(deleteProduct(product))}
                     className="delete"
                   >
                     <i className="bi bi-trash"></i>
