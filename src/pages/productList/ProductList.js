@@ -1,187 +1,45 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { baseService } from "../../network/services/baseService";
 
 const ProductList = () => {
+  const [productsList, setProductsList] = useState([]);
+  const { title } = useParams();
+
+  useEffect(() => {
+    getCategoriesProducts();
+  }, []);
+
+  const getCategoriesProducts = async () => {
+    try {
+      const data = await baseService.get(`/products/category/${title}`);
+      setProductsList(data);
+    } catch (error) {
+      console.log("Get productsList error", error);
+    }
+  };
   return (
     <>
       <div className="products">
-        <div className="card" style={{ width: "18rem" }}>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShTC0QBTm1oHGKPVDB0nw83jZee66vpCVNrg&usqp=CAU"
-            className="card-img-top"
-            alt="..."
-          />
-          <div className="card-body">
-            <h5 className="card-title">Electronics</h5>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <div className="addcontainer">
-              <Link to="/productlist" className="btn btn-primary">
-                Go to Details
-              </Link>
+        {productsList.map((product, key) => (
+          <div key={key} className="card" style={{ width: "18rem" }}>
+            <img src={product.image} className="card-img-top" alt="..." />
+            <div className="card-body">
+              <h5 className="card-title">{product.title}</h5>
+              <p className="card-text">{product.description}</p>
+              <div className="addcontainer">
+                <Link to={`/products/${product.id}`}>
+                  <button className="addbutton">Go to Detail</button>
+                </Link>
 
-              <div className="amount">
-                <input type="number" className="input" />
+                <div className="amount">
+                  <input type="number" className="input" />
+                </div>
+                <button className="addbutton">ADD TO CART</button>
               </div>
-              <button className="addbutton">ADD TO CART</button>
             </div>
           </div>
-        </div>
-        <div className="card" style={{ width: "18rem" }}>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShTC0QBTm1oHGKPVDB0nw83jZee66vpCVNrg&usqp=CAU"
-            className="card-img-top"
-            alt="..."
-          />
-          <div className="card-body">
-            <h5 className="card-title">Electronics</h5>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <Link to="/productlist" className="btn btn-primary">
-              Go to Category
-            </Link>
-          </div>
-        </div>
-        <div className="card" style={{ width: "18rem" }}>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShTC0QBTm1oHGKPVDB0nw83jZee66vpCVNrg&usqp=CAU"
-            className="card-img-top"
-            alt="..."
-          />
-          <div className="card-body">
-            <h5 className="card-title">Electronics</h5>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <Link to="/productlist" className="btn btn-primary">
-              Go to Category
-            </Link>
-          </div>
-        </div>
-        <div className="card" style={{ width: "18rem" }}>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShTC0QBTm1oHGKPVDB0nw83jZee66vpCVNrg&usqp=CAU"
-            className="card-img-top"
-            alt="..."
-          />
-          <div className="card-body">
-            <h5 className="card-title">Electronics</h5>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <Link to="/productlist" className="btn btn-primary">
-              Go to Category
-            </Link>
-          </div>
-        </div>
-        <div className="card" style={{ width: "18rem" }}>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShTC0QBTm1oHGKPVDB0nw83jZee66vpCVNrg&usqp=CAU"
-            className="card-img-top"
-            alt="..."
-          />
-          <div className="card-body">
-            <h5 className="card-title">Electronics</h5>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <Link to="/productlist" className="btn btn-primary">
-              Go to Category
-            </Link>
-          </div>
-        </div>
-        <div className="card" style={{ width: "18rem" }}>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShTC0QBTm1oHGKPVDB0nw83jZee66vpCVNrg&usqp=CAU"
-            className="card-img-top"
-            alt="..."
-          />
-          <div className="card-body">
-            <h5 className="card-title">Electronics</h5>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <Link to="/productlist" className="btn btn-primary">
-              Go to Category
-            </Link>
-          </div>
-        </div>
-        <div className="card" style={{ width: "18rem" }}>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShTC0QBTm1oHGKPVDB0nw83jZee66vpCVNrg&usqp=CAU"
-            className="card-img-top"
-            alt="..."
-          />
-          <div className="card-body">
-            <h5 className="card-title">Electronics</h5>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <Link to="/productlist" className="btn btn-primary">
-              Go to Category
-            </Link>
-          </div>
-        </div>
-        <div className="card" style={{ width: "18rem" }}>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShTC0QBTm1oHGKPVDB0nw83jZee66vpCVNrg&usqp=CAU"
-            className="card-img-top"
-            alt="..."
-          />
-          <div className="card-body">
-            <h5 className="card-title">Electronics</h5>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <Link to="/productlist" className="btn btn-primary">
-              Go to Category
-            </Link>
-          </div>
-        </div>
-        <div className="card" style={{ width: "18rem" }}>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShTC0QBTm1oHGKPVDB0nw83jZee66vpCVNrg&usqp=CAU"
-            className="card-img-top"
-            alt="..."
-          />
-          <div className="card-body">
-            <h5 className="card-title">Electronics</h5>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <Link to="/productlist" className="btn btn-primary">
-              Go to Category
-            </Link>
-          </div>
-        </div>
-        <div className="card" style={{ width: "18rem" }}>
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShTC0QBTm1oHGKPVDB0nw83jZee66vpCVNrg&usqp=CAU"
-            className="card-img-top"
-            alt="..."
-          />
-          <div className="card-body">
-            <h5 className="card-title">Electronics</h5>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <Link to="/productlist" className="btn btn-primary">
-              Go to Details
-            </Link>
-          </div>
-        </div>
+        ))}
       </div>
     </>
   );

@@ -44,3 +44,6 @@
 .addbutton:hover {
   background-color: #f8f4f4;
 }
+.card-img-top {
+  height: 250px;
+}
