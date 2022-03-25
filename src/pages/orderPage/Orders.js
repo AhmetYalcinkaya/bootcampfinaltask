@@ -1,10 +1,19 @@
 import "./cart.css";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { deleteProduct, deleteAllProduct } from "../../redux/CartSlice";
 
 const Orders = () => {
   const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
+  const removeItem = (id) => {
+    dispatch(deleteProduct(id));
+  };
+  const clearall = () => {
+    dispatch(deleteAllProduct());
+  };
   return (
     <div className="cart">
       <div className="cartwrapper">
@@ -14,8 +23,10 @@ const Orders = () => {
             <button className="topbutton">CONTINUE SHOPPING</button>
           </Link>
           <div className="toptexts">
-            <span className="toptext">Shopping Bag(2)</span>
-            <button className="clear"> Clear All</button>
+            <span className="toptext">Shopping Bag({cart.quantity})</span>
+            <button onClick={clearall} className="clear">
+              Clear All
+            </button>
           </div>
           <button className="topbutton">ORDER NOW</button>
         </div>
@@ -47,7 +58,10 @@ const Orders = () => {
                       $ {product.price * product.quantity}
                     </div>
                   </div>
-                  <button className="delete">
+                  <button
+                    onClick={() => removeItem(product.id)}
+                    className="delete"
+                  >
                     <i className="bi bi-trash"></i>
                   </button>
                 </div>
