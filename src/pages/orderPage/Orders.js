@@ -11,6 +11,7 @@ const Orders = () => {
   const clearall = () => {
     dispatch(deleteAllProduct());
   };
+
   return (
     <div className="cart">
       <div className="cartwrapper">

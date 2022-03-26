@@ -10,9 +10,10 @@ export const Cartslice = createSlice({
   reducers: {
     addProduct: (state, action) => {
       state.quantity += +action.payload.quantity;
-      state.products.push(action.payload);
+      state.products = [...state.products, action.payload];
       state.totalPrice += action.payload.price * action.payload.quantity;
     },
+
     deleteProduct: (state, action) => {
       const product = action.payload;
       const filtered = state.products.filter((item) => item.id !== product.id);

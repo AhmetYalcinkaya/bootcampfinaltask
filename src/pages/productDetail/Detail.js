@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/CartSlice";
 
 const Detail = () => {
-  const [detail, setDetail] = useState({});
+  const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
 
@@ -19,14 +19,14 @@ const Detail = () => {
   const getDetail = async () => {
     try {
       const data = await baseService.get(`/products/${id}`);
-      setDetail(data);
+      setProduct(data);
     } catch (error) {
       console.log("Get detail error", error);
     }
   };
 
   const handleClick = () => {
-    dispatch(addProduct({ ...detail, quantity }));
+    dispatch(addProduct({ ...product, quantity }));
   };
 
   return (
@@ -34,12 +34,12 @@ const Detail = () => {
       <div className="productspage">
         <div className="productwrapper">
           <div className="productimage">
-            <img className="proimg" src={detail.image} alt="" />
+            <img className="proimg" src={product.image} alt="" />
           </div>
           <div className="productinfo">
-            <h1 className="protitle">{detail.title}</h1>
-            <p className="prodesc">{detail.description}</p>
-            <span className="prize">{detail.price}</span>
+            <h1 className="protitle">{product.title}</h1>
+            <p className="prodesc">{product.description}</p>
+            <span className="prize">{product.price}</span>
             <div className="profiltercontainer">
               <div className="profilter">
                 <span className="filtertext">Size</span>
