@@ -1,15 +1,31 @@
 import "./cart.css";
+import { orderService } from "../../network/services/orderService";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { deleteProduct, deleteAllProduct } from "../../redux/CartSlice";
 
 const Orders = () => {
+  localStorage.setItem("customerID", "Ahmet");
+
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   const clearall = () => {
     dispatch(deleteAllProduct());
+  };
+
+  const addOrder = async () => {
+    try {
+      if (cart.quantity !== 0) {
+        await orderService.post("/orders", cart);
+        alert("Order Placed");
+      } else {
+        alert("Cart is empty");
+      }
+    } catch (error) {
+      console.log("Order add error", error);
+    }
   };
 
   return (
@@ -26,45 +42,51 @@ const Orders = () => {
               Clear All
             </button>
           </div>
-          <button className="topbutton">ORDER NOW</button>
+          <button onClick={addOrder} className="topbutton">
+            ORDER NOW
+          </button>
         </div>
         <div className="bottom">
           <div className="bottominfo">
-            {cart.products.map((product, key) => (
-              <div className="pro" key={key}>
-                <div className="producttail">
-                  <img className="bottomimg" src={product.image} alt="" />
-                  <div className="details">
-                    <span className="proname">
-                      <b>Product:</b> {product.title}
-                    </span>
+            {cart.quantity === 0 ? (
+              <h2>Your Cart is Empty</h2>
+            ) : (
+              cart.products.map((product, key) => (
+                <div className="pro" key={key}>
+                  <div className="producttail">
+                    <img className="bottomimg" src={product.image} alt="" />
+                    <div className="details">
+                      <span className="proname">
+                        <b>Product:</b> {product.title}
+                      </span>
 
-                    <div className="prosize">
-                      <div className="amount">
-                        <input
-                          disabled
-                          type="number"
-                          className="input"
-                          value={product.quantity}
-                        />
+                      <div className="prosize">
+                        <div className="amount">
+                          <input
+                            disabled
+                            type="number"
+                            className="input"
+                            value={product.quantity}
+                          />
+                        </div>
+                        <button className="addbutton">ADD TO CART</button>
                       </div>
-                      <button className="addbutton">ADD TO CART</button>
                     </div>
-                  </div>
-                  <div className="price">
-                    <div className="proprice">
-                      $ {product.price * product.quantity}
+                    <div className="price">
+                      <div className="proprice">
+                        $ {product.price * product.quantity}
+                      </div>
                     </div>
+                    <button
+                      onClick={() => dispatch(deleteProduct(product))}
+                      className="delete"
+                    >
+                      <i className="bi bi-trash"></i>
+                    </button>
                   </div>
-                  <button
-                    onClick={() => dispatch(deleteProduct(product))}
-                    className="delete"
-                  >
-                    <i className="bi bi-trash"></i>
-                  </button>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
           <div className="summary">
             <h1 className="summarytitle">ORDER SUMMARY</h1>
@@ -75,7 +97,9 @@ const Orders = () => {
                 $ {cart.totalPrice.toFixed(2)}
               </span>
             </div>
-            <button className="summarybutton">ORDER NOW</button>
+            <button onClick={addOrder} className="summarybutton">
+              ORDER NOW
+            </button>
           </div>
         </div>
       </div>

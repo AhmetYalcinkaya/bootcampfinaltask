@@ -8,6 +8,8 @@ import Detail from "./pages/productDetail/Detail";
 import Orders from "./pages/orderPage/Orders";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
+import CostumerOrders from "./pages/customerorders/CostumerOrders";
+
 function App() {
   return (
     <>
@@ -19,6 +21,7 @@ function App() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/myorders" element={<CostumerOrders />} />
       </Routes>
       <Footer />
     </>

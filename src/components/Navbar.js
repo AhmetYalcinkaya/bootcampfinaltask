@@ -11,20 +11,24 @@ function Navbar() {
       <nav className="navbar navbar-expand-lg navbar-light shadow">
         <div className="container">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link
-                className="btn btn-outline-primary ms-auto px-4 rounded-pill"
-                to="/"
-              >
-                Homepage
-              </Link>
-            </li>
+            <Link
+              className="btn btn-outline-primary ms-auto px-4 rounded-pill"
+              to="/"
+            >
+              Homepage
+            </Link>
           </ul>
           <Link className="navbar-brand fw-bolder fs-4 mx-auto " to="/">
             FINN MART
           </Link>
 
           <>
+            <Link
+              to="/myorders"
+              className="btn btn-outline-primary ms-auto px-4 rounded-pill "
+            >
+              <i className="bi bi-bag"></i> My Orders
+            </Link>
             <Link
               to="/login"
               className="btn btn-outline-primary ms-auto px-4 rounded-pill "
