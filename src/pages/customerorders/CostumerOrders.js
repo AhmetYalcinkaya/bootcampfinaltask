@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 const CostumerOrders = () => {
   const [orders, setOrders] = useState([]);
 
-  console.log(orders);
   const local = localStorage.getItem("customerID");
 
   useEffect(() => {
@@ -39,33 +38,39 @@ const CostumerOrders = () => {
               <h2>Your Cart is Empty</h2>
             ) : (
               orders.map((product, key) => (
-                <div className="pro" key={key}>
-                  <div className="producttail">
-                    <img
-                      className="bottomimg"
-                      src="https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/91F89859AE004153A24E7852F8666F0F/10093625_r.jpg?fit=inside|540:540"
-                      alt=""
-                    />
-                    <div className="details">
-                      <span className="proname">
-                        <b>Product:</b> {product.id}
-                      </span>
+                <div key={key}>
+                  {product.products.map((item, id) => (
+                    <div className="pro" key={id}>
+                      <div className="producttail">
+                        <img
+                          className="bottomimg"
+                          src="https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/91F89859AE004153A24E7852F8666F0F/10093625_r.jpg?fit=inside|540:540"
+                          alt=""
+                        />
+                        <div className="details">
+                          <span className="proname">
+                            <b>Product:</b> {item.name}
+                          </span>
 
-                      <div className="prosize">
-                        <div className="amount">
-                          <input
-                            disabled
-                            type="number"
-                            className="input"
-                            value={product.quantity}
-                          />
+                          <div className="prosize">
+                            <div className="amount">
+                              <input
+                                disabled
+                                type="number"
+                                className="input"
+                                value={item.quantity}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="price">
+                          <div className="proprice">
+                            $ {(item.unitPrice * item.quantity).toFixed(2)}
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div className="price">
-                      <div className="proprice">$ {product.totalPrice}</div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               ))
             )}

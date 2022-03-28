@@ -25,8 +25,8 @@ const ProductList = () => {
     }
   };
 
-  const handleClick = () => {
-    dispatch(addProduct({ product: productsList, quantity: quanty }));
+  const handleClick = (product) => {
+    dispatch(addProduct({ ...product, quantity: quanty }));
   };
 
   return (
@@ -56,7 +56,10 @@ const ProductList = () => {
                     className="input"
                   />
                 </div>
-                <button onClick={handleClick} className="addbutton">
+                <button
+                  onClick={() => handleClick(product)}
+                  className="addbutton"
+                >
                   ADD TO CART
                 </button>
               </div>

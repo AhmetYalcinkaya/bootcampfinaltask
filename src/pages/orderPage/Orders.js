@@ -14,7 +14,7 @@ const Orders = () => {
   const clearall = () => {
     dispatch(deleteAllProduct());
   };
-  console.log(cart);
+
   const addOrder = async () => {
     try {
       if (cart.quantity !== 0) {

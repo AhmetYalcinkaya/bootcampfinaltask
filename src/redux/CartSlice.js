@@ -17,10 +17,14 @@ export const Cartslice = createSlice({
       if (existingIndex >= 0) {
         state.products[existingIndex] = {
           ...state.products[existingIndex],
-          quantity: state.products[existingIndex].quantity + 1,
+          quantity:
+            state.products[existingIndex].quantity + +action.payload.quantity,
         };
       } else {
-        let tempProductItem = { ...action.payload, quantity: 1 };
+        let tempProductItem = {
+          ...action.payload,
+          quantity: +action.payload.quantity,
+        };
         state.products.push(tempProductItem);
       }
 
