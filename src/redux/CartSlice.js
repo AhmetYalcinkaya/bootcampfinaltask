@@ -10,8 +10,21 @@ export const Cartslice = createSlice({
   },
   reducers: {
     addProduct: (state, action) => {
+      const existingIndex = state.products.findIndex(
+        (item) => item.id === action.payload.id
+      );
+
+      if (existingIndex >= 0) {
+        state.products[existingIndex] = {
+          ...state.products[existingIndex],
+          quantity: state.products[existingIndex].quantity + 1,
+        };
+      } else {
+        let tempProductItem = { ...action.payload, quantity: 1 };
+        state.products.push(tempProductItem);
+      }
+
       state.quantity += +action.payload.quantity;
-      state.products = [...state.products, action.payload];
       state.totalPrice += action.payload.unitPrice * action.payload.quantity;
       const ID = localStorage.getItem("customerID");
       state.costumerID = ID;

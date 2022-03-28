@@ -73,7 +73,6 @@ const Orders = () => {
                             value={product.quantity}
                           />
                         </div>
-                        <button className="addbutton">ADD TO CART</button>
                       </div>
                     </div>
                     <div className="price">
