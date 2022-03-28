@@ -14,7 +14,7 @@ const Orders = () => {
   const clearall = () => {
     dispatch(deleteAllProduct());
   };
-
+  console.log(cart);
   const addOrder = async () => {
     try {
       if (cart.quantity !== 0) {
@@ -54,10 +54,14 @@ const Orders = () => {
               cart.products.map((product, key) => (
                 <div className="pro" key={key}>
                   <div className="producttail">
-                    <img className="bottomimg" src={product.image} alt="" />
+                    <img
+                      className="bottomimg"
+                      src="https://ap.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lvse-inside-out-t-shirt-ready-to-wear--HIY47WJYN513_PM2_Front%20view.jpg"
+                      alt=""
+                    />
                     <div className="details">
                       <span className="proname">
-                        <b>Product:</b> {product.title}
+                        <b>Product:</b> {product.name}
                       </span>
 
                       <div className="prosize">
@@ -74,7 +78,7 @@ const Orders = () => {
                     </div>
                     <div className="price">
                       <div className="proprice">
-                        $ {product.price * product.quantity}
+                        $ {product.unitPrice * product.quantity}
                       </div>
                     </div>
                     <button

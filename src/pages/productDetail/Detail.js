@@ -34,12 +34,16 @@ const Detail = () => {
       <div className="productspage">
         <div className="productwrapper">
           <div className="productimage">
-            <img className="proimg" src={product.image} alt="" />
+            <img
+              className="proimg"
+              src="https://media.gq-magazine.co.uk/photos/6130bdefc794f5912d14ecfc/master/w_1920,h_1280,c_limit/White%20tshirts_0004_Hugo%20Boss.jpg"
+              alt=""
+            />
           </div>
           <div className="productinfo">
-            <h1 className="protitle">{product.title}</h1>
-            <p className="prodesc">{product.description}</p>
-            <span className="prize">{product.price}</span>
+            <h1 className="protitle">{product.name}</h1>
+            <p className="prodesc">{product.supplier?.companyName}</p>
+            <span className="prize">{product.unitPrice} $</span>
             <div className="profiltercontainer">
               <div className="profilter">
                 <span className="filtertext">Size</span>

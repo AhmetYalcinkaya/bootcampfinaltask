@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 const CostumerOrders = () => {
   const [orders, setOrders] = useState([]);
 
+  console.log(orders);
   const local = localStorage.getItem("customerID");
 
   useEffect(() => {
@@ -16,7 +17,7 @@ const CostumerOrders = () => {
     try {
       const data = await orderService.get("/orders");
       const filtered = data.filter((item) => item.costumerID === local);
-      console.log(filtered);
+
       setOrders(filtered);
     } catch (error) {
       console.log("Get orders error", error);
@@ -34,16 +35,20 @@ const CostumerOrders = () => {
         </div>
         <div className="bottom">
           <div className="bottominfo">
-            {orders.quantity === 0 ? (
+            {orders.length === 0 ? (
               <h2>Your Cart is Empty</h2>
             ) : (
               orders.map((product, key) => (
                 <div className="pro" key={key}>
                   <div className="producttail">
-                    <img className="bottomimg" src={product.image} alt="" />
+                    <img
+                      className="bottomimg"
+                      src="https://imgs.michaels.com/MAM/assets/1/726D45CA1C364650A39CD1B336F03305/img/91F89859AE004153A24E7852F8666F0F/10093625_r.jpg?fit=inside|540:540"
+                      alt=""
+                    />
                     <div className="details">
                       <span className="proname">
-                        <b>Product:</b> {product.title}
+                        <b>Product:</b> {product.id}
                       </span>
 
                       <div className="prosize">
@@ -58,9 +63,7 @@ const CostumerOrders = () => {
                       </div>
                     </div>
                     <div className="price">
-                      <div className="proprice">
-                        $ {product.price * product.quantity}
-                      </div>
+                      <div className="proprice">$ {product.totalPrice}</div>
                     </div>
                   </div>
                 </div>

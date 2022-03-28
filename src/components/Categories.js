@@ -11,7 +11,7 @@ const Categories = () => {
 
   const getCategories = async () => {
     try {
-      const data = await baseService.get("/products/categories");
+      const data = await baseService.get("/categories");
       setCategoryList(data);
     } catch (error) {
       console.log("Get category error", error);
@@ -27,9 +27,9 @@ const Categories = () => {
             alt="..."
           />
           <div className="card-body">
-            <h5 className="card-title">{category.toUpperCase()}</h5>
+            <h5 className="card-title">{category.name}</h5>
 
-            <Link to={`/productlist/${category}`}>
+            <Link to={`/productlist/${category.id}`}>
               <button className="addbutton">Go to Category</button>
             </Link>
           </div>
