@@ -12,7 +12,7 @@ const ProductList = () => {
 
   useEffect(() => {
     getCategoriesProducts();
-  }, []);
+  });
 
   const getCategoriesProducts = async () => {
     try {

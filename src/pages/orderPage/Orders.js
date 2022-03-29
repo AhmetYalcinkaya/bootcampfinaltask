@@ -78,7 +78,7 @@ const Orders = () => {
                     </div>
                     <div className="price">
                       <div className="proprice">
-                        $ {product.unitPrice * product.quantity}
+                        $ {(product.unitPrice * product.quantity).toFixed(2)}
                       </div>
                     </div>
                     <button
