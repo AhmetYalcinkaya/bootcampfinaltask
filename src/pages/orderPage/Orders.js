@@ -12,6 +12,7 @@ const Orders = () => {
   const dispatch = useDispatch();
 
   const clearall = () => {
+    alert("Are you sure you want to clear all products?");
     dispatch(deleteAllProduct());
   };
 

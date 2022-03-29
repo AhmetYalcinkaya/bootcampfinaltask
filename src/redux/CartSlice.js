@@ -32,7 +32,6 @@ export const Cartslice = createSlice({
       state.totalPrice += action.payload.unitPrice * action.payload.quantity;
       const ID = localStorage.getItem("customerID");
       state.costumerID = ID;
-      console.log(ID);
     },
 
     deleteProduct: (state, action) => {

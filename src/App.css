@@ -1,12 +1,16 @@
 .link {
   text-decoration: none;
 }
-
+.card {
+  width: 18rem;
+  margin: 1rem;
+}
 .category {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+
   flex-wrap: wrap;
-  margin: 10px 12px 12px 15px;
+  margin: 10p;
 }
 .products {
   display: flex;

@@ -18,7 +18,7 @@ const ProductList = () => {
     try {
       const data = await baseService.get(`/products`);
       const filtered = data.filter((product) => product.categoryId === +id);
-      console.log(filtered);
+
       setProductsList(filtered);
     } catch (error) {
       console.log("Get productsList error", error);
@@ -32,7 +32,7 @@ const ProductList = () => {
   return (
     <>
       <div className="products">
-        {productsList.map((product, key) => (
+        {productsList?.map((product, key) => (
           <div key={key} className="card" style={{ width: "18rem" }}>
             <img
               src="https://st-intersport.mncdn.com/mnresize/1500/1500/Content/media/ProductImg/original/2210072469_o003-john-frank-cool-t-shirt-637690624938233321.jpg"
@@ -52,6 +52,7 @@ const ProductList = () => {
                     onChange={(e) => {
                       setQuanty(e.target.value);
                     }}
+                    placeholder="1"
                     type="number"
                     className="input"
                   />

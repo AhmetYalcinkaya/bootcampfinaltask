@@ -27,7 +27,7 @@ const Products = () => {
 
   return (
     <div className="products">
-      {products.map((product, key) => (
+      {products?.map((product, key) => (
         <div key={key} className="card" style={{ width: "18rem" }}>
           <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfASAg9CkTL6JVWk3bFNHibc_ArzuS9liaVg&usqp=CAU"
@@ -35,10 +35,10 @@ const Products = () => {
             alt="..."
           />
           <div className="card-body">
-            <h5 className="card-title">{product.name}</h5>
-            <p className="card-text">{product.quantityPerUnit}</p>
+            <h5 className="card-title">{product?.name}</h5>
+            <p className="card-text">{product?.quantityPerUnit}</p>
             <div className="addcontainer">
-              <Link to={`/products/${product.id}`}>
+              <Link to={`/products/${product?.id}`}>
                 <button className="addbutton">Go to Detail</button>
               </Link>
 
