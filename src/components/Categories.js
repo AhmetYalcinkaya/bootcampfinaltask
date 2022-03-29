@@ -19,7 +19,7 @@ const Categories = () => {
   };
   return (
     <div className="category">
-      {categoryList.map((category, key) => (
+      {categoryList?.map((category, key) => (
         <div key={key} className="card">
           <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4u3JvntPheaMYhE3kT9DErxXjB5QFgwLKRQ&usqp=CAU"

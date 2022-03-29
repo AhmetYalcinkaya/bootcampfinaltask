@@ -64,7 +64,9 @@ const Orders = () => {
                       <span className="proname">
                         <b>Product:</b> {product.name}
                       </span>
-
+                      <span className="proname">
+                        <b>Price:</b> {product.unitPrice}
+                      </span>
                       <div className="prosize">
                         <div className="amount">
                           <input
@@ -78,7 +80,8 @@ const Orders = () => {
                     </div>
                     <div className="price">
                       <div className="proprice">
-                        $ {(product.unitPrice * product.quantity).toFixed(2)}
+                        Total:
+                        {(product.unitPrice * product.quantity).toFixed(2)} $
                       </div>
                     </div>
                     <button
