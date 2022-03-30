@@ -47,6 +47,7 @@ const Products = () => {
                   onChange={(e) => {
                     setQuanty(e.target.value);
                   }}
+                  placeholder="1"
                   type="number"
                   className="input"
                 />
