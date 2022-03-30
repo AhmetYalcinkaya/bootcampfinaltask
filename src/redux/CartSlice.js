@@ -26,9 +26,9 @@ export const Cartslice = createSlice({
           quantity: +action.payload.quantity,
         };
         state.products.push(tempProductItem);
+        state.quantity = state.quantity + 1;
       }
 
-      state.quantity += +action.payload.quantity;
       state.totalPrice += action.payload.unitPrice * action.payload.quantity;
       const ID = localStorage.getItem("customerID");
       state.costumerID = ID;
@@ -38,7 +38,7 @@ export const Cartslice = createSlice({
       const product = action.payload;
       const filtered = state.products.filter((item) => item.id !== product.id);
       state.products = filtered;
-      state.quantity -= +action.payload.quantity;
+      state.quantity = state.quantity - 1;
       state.totalPrice -= action.payload.unitPrice * action.payload.quantity;
     },
     deleteAllProduct: (state) => {
