@@ -1,10 +1,10 @@
-import { API_URL_POST } from "../env/config";
+import { API_URL } from "../env/config";
 
 export const orderService = {
   get: async (url) => {
     let response = [];
 
-    await fetch(API_URL_POST + url)
+    await fetch(API_URL + url)
       .then((res) => res.json())
       .then((data) => {
         response = data;
@@ -22,7 +22,7 @@ export const orderService = {
       body: JSON.stringify(data),
     };
 
-    await fetch(API_URL_POST + url, requestOptions)
+    await fetch(API_URL + url, requestOptions)
       .then((res) => res.json())
       .then((data) => {
         response = data;
