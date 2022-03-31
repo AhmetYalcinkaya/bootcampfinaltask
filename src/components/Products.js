@@ -23,6 +23,7 @@ const Products = () => {
 
   const handleClick = (product) => {
     dispatch(addProduct({ ...product, quantity: quanty }));
+    setQuanty(1);
   };
 
   return (
