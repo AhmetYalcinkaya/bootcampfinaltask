@@ -7,7 +7,6 @@ https://graceful-manatee-322f6b.netlify.app/
 <br />
 
 ### Images of the Website:
-[![image](https://www.linkpicture.com/q/Adsız_63.png)](https://www.linkpicture.com/view.php?img=LPic6242c93d3387c2017322159)
 
 [![image](https://www.linkpicture.com/q/Adsız1_3.png)](https://www.linkpicture.com/view.php?img=LPic6242c952e34b7405937713)
 
